@@ -1,6 +1,6 @@
 ## Project Overview
 
-**This repository contains work completed within the **42 curriculum**, authored by *aoo*, as part of the **Inception** project.**
+*This repository contains work completed within the **42 curriculum**, authored by aoo, as part of the **Inception** project.*
 
 ## Inception
 
