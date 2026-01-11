@@ -1,92 +1,133 @@
-This project has been created as part of the 42 curriculum by aoo.
+## Project Overview
 
-# Inception
+This repository contains work completed within the **42 curriculum**, authored by *aoo*, as part of the **Inception** project.
 
-## Description
-The **Inception** project aims to introduce containerization concepts by building a small, secure, and modular infrastructure using **Docker** and **Docker Compose**. The stack is composed of multiple services, each running in its own dedicated container and built from custom Dockerfiles.
+## Inception
 
-The main goal is to deploy a WordPress website served through **NGINX** with **TLS (v1.2/v1.3)**, backed by a **MariaDB** database, while following strict rules regarding security, networking, volumes, and process management.
+## Purpose
 
-This project emphasizes:
-- Understanding how containers differ from virtual machines
-- Writing clean and correct Dockerfiles
-- Managing services, networks, volumes, and secrets properly
-- Respecting Docker best practices (PID 1, no infinite loops, no hacky keep-alive commands)
+The **Inception** project is designed to introduce and solidify core containerization principles through the construction of a secure, modular service architecture using **Docker** and **Docker Compose**. Rather than relying on prebuilt images, each service is manually defined and built using custom Dockerfiles.
 
-# Project Architecture
-The infrastructure consists of:
-- **NGINX container**: Handles HTTPS traffic (TLS only)
-- **WordPress container**: Runs WordPress with php-fpm (no nginx inside)
-- **MariaDB container**: Hosts the WordPress database
-- **Docker network**: Enables internal communication between containers
-- **Docker volumes**:
-  - WordPress database data
-  - WordPress website files
+The final objective is to deploy a fully functional **WordPress** application exposed through **NGINX** over **HTTPS**, using **TLS 1.2 and 1.3 only**, with data persistence ensured by a **MariaDB** backend. Throughout the project, strict constraints are enforced to promote best practices in security, networking, and container lifecycle management.
 
-All containers:
-- Are built from **custom Dockerfiles**
-- Are based on **Debian bookworm (penultimate stable)**
-- Restart automatically on failure
+This project focuses on:
 
-## Instructions
+* Distinguishing container-based systems from traditional virtual machines
+* Writing reliable and standards-compliant Dockerfiles
+* Properly configuring services, volumes, networks, and secrets
+* Ensuring correct process handling (PID 1 compliance, no artificial keep-alive loops)
 
-# Requirements
-- Linux virtual machine
-- Docker
-- Docker Compose
-- Make
+## Infrastructure Layout
 
-# Build and Run dockerfiles
+The application stack is composed of the following elements:
+
+* **NGINX service**
+  Responsible for terminating TLS connections and serving HTTPS traffic exclusively.
+
+* **WordPress service**
+  Runs WordPress using **php-fpm** only; no web server is embedded in this container.
+
+* **MariaDB service**
+  Provides persistent database storage for WordPress.
+
+* **Dedicated Docker network**
+  Enables secure internal communication between services.
+
+* **Persistent Docker volumes**
+
+  * One volume for database storage
+  * One volume for WordPress application files
+
+All services:
+
+* Are built from **custom Dockerfiles**
+* Use **Debian Bookworm** as the base image
+* Are configured to restart automatically in case of failure
+
+## Setup Requirements
+
+To run this project, the following are required:
+
+* A Linux-based virtual machine
+* Docker
+* Docker Compose
+* GNU Make
+
+## Build and Deployment
+
+To build images and start all services:
+
 ```bash
 make up
 ```
 
-# Stop and Clean
+## Shutdown and Cleanup
+
+To stop services and remove containers:
+
 ```bash
 make down
 ```
 
-# Full Cleanup (including volumes)
+To completely remove containers, images, and volumes:
+
 ```bash
 make fclean
 ```
 
-# Access
-- Website: https://aoo.42.fr
+## Accessing the Application
 
-Ensure that `aoo.42.fr` points to your local VM IP in `/etc/hosts`.
+* URL: `https://aoo.42.fr`
 
-## Design Choices & Comparisons
+Make sure that the domain name resolves to your local virtual machine by adding an entry to `/etc/hosts`.
 
-### Virtual Machines vs Docker
-- **VMs** virtualize entire operating systems, consuming more resources.
-- **Docker containers** share the host kernel, are lightweight, faster to start, and better suited for microservices.
+## Architectural Decisions
 
-### Secrets vs Environment Variables
-- **Environment variables** are easy to use but may be exposed via `docker inspect`.
-- **Docker secrets** provide safer credential handling by mounting sensitive data as files with restricted access.
+### Containers Compared to Virtual Machines
 
-### Docker Network vs Host Network
-- **Docker network** offers isolation, DNS-based service discovery, and security.
-- **Host network** removes isolation and is forbidden in this project.
+* **Virtual machines** emulate entire operating systems, leading to higher resource usage and slower startup times.
+* **Containers** operate by sharing the host kernel, making them lightweight, fast, and ideal for service-oriented architectures.
 
-### Docker Volumes vs Bind Mounts
-- **Volumes** are managed by Docker, portable, and safer for persistent data.
-- **Bind mounts** depend on host paths and are more error-prone.
+### Secrets Versus Environment Variables
 
-## Resources
+* **Environment variables** are convenient but can be exposed through container inspection.
+* **Docker secrets** enhance security by storing sensitive data as protected files within containers.
 
-### Technical References
-- Docker documentation
-- Docker Compose documentation
-- NGINX official documentation
-- WordPress Codex
-- MariaDB documentation
+### Docker Networking Versus Host Networking
 
-### AI Usage
-AI was used as a **learning and support tool** to:
-- Clarify Docker and Docker Compose concepts
-- Review shell scripts and Dockerfiles
-- Help structure documentation
+* **Custom Docker networks** provide isolation, built-in DNS resolution, and improved security.
+* **Host networking** bypasses isolation and is explicitly disallowed in this project.
 
-All design decisions, code, and debugging were implemented and validated manually.
+### Volumes Versus Bind Mounts
+
+* **Docker volumes** are managed internally by Docker, offering better portability and safety.
+* **Bind mounts** depend on host filesystem paths and are more prone to configuration errors.
+
+## References
+
+### Documentation
+
+* Official Docker documentation
+* Docker Compose reference
+* NGINX documentation
+* WordPress Codex
+* MariaDB documentation
+
+### Use of AI Tools
+
+AI tools were used strictly as an educational aid to:
+
+* Improve understanding of Docker-related concepts
+* Review shell scripts and Dockerfile logic
+* Assist in organizing project documentation
+
+All implementation choices, debugging, and final validation were carried out independently.
+
+---
+
+If you want, I can also:
+
+* Make it sound more academic
+* Make it shorter (README-style)
+* Adapt it to 42 evaluation expectations
+* Rewrite it again with a different tone (technical, minimalist, or narrative)
