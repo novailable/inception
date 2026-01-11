@@ -122,12 +122,3 @@ AI tools were used strictly as an educational aid to:
 * Assist in organizing project documentation
 
 All implementation choices, debugging, and final validation were carried out independently.
-
----
-
-If you want, I can also:
-
-* Make it sound more academic
-* Make it shorter (README-style)
-* Adapt it to 42 evaluation expectations
-* Rewrite it again with a different tone (technical, minimalist, or narrative)
