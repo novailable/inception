@@ -106,6 +106,3 @@ Persistent data, including the WordPress database and website files, is stored o
 
 This data remains unaffected even if the containers are stopped, restarted, or rebuilt.
 
----
-
-This guide should help you effectively interact with the **Inception** infrastructure, whether you're managing the environment or simply using the website.
